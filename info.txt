@@ -75,3 +75,9 @@ deactivate
 
 
 cd Blog_project
+
+pwd  # Показує поточну папку
+ls   # Показує файли (має бути manage.py)
+
+
+https://github.com/Rogacka/reservation_system_py
