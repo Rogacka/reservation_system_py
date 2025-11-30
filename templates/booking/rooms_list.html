@@ -1,0 +1,10 @@
+{%extends "base.html"%}
+{% block content %}
+    {% for room in rooms%}
+        <h1>Room #{{room.number}}</h1>
+        <h2>Capacity #{{room.capacity}}</h2>
+        <h2>Location #{{room.locations}}</h2>
+
+    {% endfor %}
+
+{% endblock %}
