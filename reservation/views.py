@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from reservation.models import Room, Booking
+from reservation.models import Room, Booking, Profile
 from django.http import HttpResponse
 
 def index(request):
@@ -23,6 +23,8 @@ def room_list(request):
 
 def book_room(request):
     if request.method == "POST":
+        username = request.POST.get("username")
+        email = request.POST.get("email")
         room_number = request.POST.get("room_number")
         start_time = request.POST.get("start_time")
         end_time = request.POST.get("end_time")
@@ -41,6 +43,8 @@ def book_room(request):
             )
         booking = Booking.objects.create(
             user = request.user,
+            username=username,
+            email=email,
             room=room,
             start_time=start_time,
             end_time=end_time,

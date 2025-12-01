@@ -13,12 +13,15 @@ class Room(models.Model):
     
     class Meta:
         verbose_name = "Приміщення"
+        verbose_name_plural = "Приміщення"
         ordering = ["number"]
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     all_rooms = models.ForeignKey(Room, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=30, null=True, blank=True)
+    email = models.EmailField(blank=True)  
+    username = models.CharField(max_length=256, default='user', blank=True)
 
     def __str__(self):
         return f"{self.user} {self.phone_number}"
@@ -37,17 +40,17 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"{self.user}# Booking, {self.room}"
+    
+    
+    @property
+    def user_email(self):
+        return self.user.email
+    
+    @property
+    def user_name(self):
+        return self.user.username
 
     class Meta:
         verbose_name = "Резервування"
+        verbose_name_plural = "Резервування"
         ordering = ["start_time"]
-
-
-    
-
-
-
-
-
-# Create your models here.
-
